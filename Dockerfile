@@ -38,7 +38,10 @@ ENTRYPOINT dotnet test \
     --runtime linux-musl-x64 \
     --no-restore \
     --no-build \
-    --logger "trx;LogFileName=test_results_unit_test.trx"
+    --logger "trx;LogFileName=test_results_unit_test.trx" \
+    -p:CollectCoverage=true \
+    -p:CoverletOutput="TestResults/coverage.info" \
+    -p:CoverletOutputFormat=lcov
 
 FROM build AS publish
 RUN dotnet publish \
