@@ -45,6 +45,12 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }} 
           path-to-lcov: ${{ github.workspace }}/path/to/artifacts/testresults/lcov.info
+      
+      - name: Code Coverage Report
+        uses: romeovs/lcov-reporter-action@v0.2.11
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          lcov-file: ${{ github.workspace }}/path/to/artifacts/testresults/lcov.info
 
       - name: App [build]
         run: docker build -t ${{ env.image-name }} .
