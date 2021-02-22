@@ -24,12 +24,12 @@ jobs:
       - name: Unit tests [run]
         run: docker run --rm -v ${{ github.workspace }}/path/to/artifacts/testresults:/code/test/Samples.WeatherForecast.Api.UnitTest/TestResults ${{ env.image-name-unit-tests }}
         
-      - name: Unit tests [results]  
+      - name: Unit tests [results + coverage]  
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: unit-test-results
-          path: ${{ github.workspace }}/path/to/artifacts/testresults/test_results_unit_test.trx
+          path: ${{ github.workspace }}/path/to/artifacts/testresults/
           
       - name: Unit tests [publish]
         uses: dorny/test-reporter@v1
@@ -39,6 +39,12 @@ jobs:
           path: ${{ github.workspace }}/path/to/artifacts/testresults/test_results_unit_test.trx
           reporter: dotnet-trx
           token: ${{ secrets.GITHUB_TOKEN }} 
+
+      - name: Code coverage [coveralls]  
+        uses: coverallsapp/github-action@master   
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }} 
+          path-to-lcov: ${{ github.workspace }}/path/to/artifacts/testresults/coverage.info
 
       - name: App [build]
         run: docker build -t ${{ env.image-name }} .
