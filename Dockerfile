@@ -40,7 +40,7 @@ ENTRYPOINT dotnet test \
     --no-build \
     --logger "trx;LogFileName=test_results_unit_test.trx" \
     -p:CollectCoverage=true \
-    -p:CoverletOutput="TestResults/coverage.info" \
+    -p:CoverletOutput="TestResults/lcov.info" \
     -p:CoverletOutputFormat=lcov
 
 FROM build AS publish

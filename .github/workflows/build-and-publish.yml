@@ -44,7 +44,7 @@ jobs:
         uses: coverallsapp/github-action@master   
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }} 
-          path-to-lcov: ${{ github.workspace }}/path/to/artifacts/testresults/coverage.info
+          path-to-lcov: ${{ github.workspace }}/path/to/artifacts/testresults/lcov.info
 
       - name: App [build]
         run: docker build -t ${{ env.image-name }} .
