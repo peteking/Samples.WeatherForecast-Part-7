@@ -17,6 +17,9 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
 
       - name: Unit tests [build]
         run: docker build --target unit-test -t ${{ env.image-name-unit-tests }} .
