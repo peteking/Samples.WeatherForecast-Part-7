@@ -1,11 +1,2 @@
 codecov:
   require_ci_to_pass: yes
-
-coverage:
-  status:
-    project:
-      default:
-        target: 30&
-        threshold: 1%
-        paths: 
-          - "src"
