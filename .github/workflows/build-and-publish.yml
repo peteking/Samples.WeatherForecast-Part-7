@@ -27,14 +27,14 @@ jobs:
       - name: Unit tests [run]
         run: docker run --rm -v ${{ github.workspace }}/path/to/artifacts/testresults:/code/test/Samples.WeatherForecast.Api.UnitTest/TestResults ${{ env.image-name-unit-tests }}
         
-      - name: Unit tests [results + coverage]  
+      - name: Unit tests [upload artifacts]  
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: unit-test-results
           path: ${{ github.workspace }}/path/to/artifacts/testresults/
           
-      - name: Unit tests [publish]
+      - name: Unit tests [publish results]
         uses: dorny/test-reporter@v1
         if: always()
         with:
