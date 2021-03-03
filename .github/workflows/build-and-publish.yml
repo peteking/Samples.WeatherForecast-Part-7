@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  image-name: ghcr.io/peterjking/samples-weatherforecast-part-7:${{ github.sha }}
+  image-name: ghcr.io/peteking/samples-weatherforecast-part-7:${{ github.sha }}
   image-name-unit-tests: unit-tests:latest
   COVERALLS_DEBUG: true
   NODE_COVERALLS_DEBUG: 1
